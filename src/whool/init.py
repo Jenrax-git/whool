@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 
 BUILD_SYSTEM_TOML = b"""\
 [build-system]
-requires = ["whool"]
+requires = ["whool @ git+https://github.com/Jenrax-git/whool.git@main-jenrax"]
 build-backend = "whool.buildapi"
 """
 

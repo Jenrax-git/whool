@@ -136,19 +136,21 @@ def _get_metadata(addon_dir: Path) -> Message:
     )
     if whool_post_version_strategy_override:
         options["post_version_strategy_override"] = whool_post_version_strategy_override
+    
     metadata = metadata_from_addon_dir(
         addon_dir,
         options,
         precomputed_metadata_file=addon_dir.joinpath("PKG-INFO"),
     )
+    
     # Check if metadata Name contains "odoo-addon" twice and fix it
     name = metadata.get("Name", "")
+    
     if name.count("odoo-addon") > 1:
         # Remove duplicate "odoo-addon" occurrences
         name = re.sub(r"(odoo-addon-)+", "odoo-addon-", name)
         metadata.replace_header("Name", name)
-    # print("*********Metadata generated:")
-    # print(metadata)
+        
     return metadata
 
 
